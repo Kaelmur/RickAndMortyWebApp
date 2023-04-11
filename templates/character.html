@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<link href="{{url_for('static', filename='styles.css')}}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<title>Character</title>
+		{{ bootstrap.load_css() }}
+</head>
+<body class="gg">
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top">
+	<div class="container px-4 px-lg-1 justify-content-center">
+		<a class="navbar-brand" href="{{url_for('home')}}">Who are you in Rick and Morty</a>
+	</div>
+</nav>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto content">
+{% if data: %}
+	      <div class="card" style="width: 18rem;background-color: black;">
+  <img src="{{ data['image'] }}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{ data['name'] }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" style="background-color: black;color: white;">Status: {{ data['status'] }}</li>
+    <li class="list-group-item" style="background-color: black;color: white;">Gender: {{ data['gender'] }}</li>
+    <li class="list-group-item" style="background-color: black;color: white;">From: {{ data['origin']['name'] }}</li>
+	<li class="list-group-item" style="background-color: black;color: white;">Location: {{ data['location']['name'] }}</li>
+	  {% if episode: %}
+	<li class="list-group-item" style="background-color: black;color: white;">From which episode: {{ episode }}</li>
+	  {% else: %}
+	  <li class="list-group-item" style="background-color: black;color: white;">From which episode: None</li>
+	  {% endif %}
+  </ul>
+</div>
+{% endif %}
+{{ bootstrap.load_js() }}
+      </div>
+    </div>
+</div>
+<nav class="navbar navbar-dark navbar-expand-lg fixed-bottom">
+	<div class="container px-4 px-lg-1 justify-content-center">
+		<a class="navbar-brand" href="https://rickandmortyapi.com/">API Used</a>
+	</div>
+</nav>
+</body>
+</html>
